@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="vanrrtech.app.prodiaappsample.features.github.SearchFragment"
+        android:name="vanrrtech.app.ajaib_app_sample.features.github.SearchFragment"
         android:label="searchFragment"
         tools:layout="@layout/search_user_github_fragment">
         <action
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/detailUserFragment"
-        android:name="vanrrtech.app.prodiaappsample.features.github.UserDetailFragment"
+        android:name="vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragment"
         android:label="detailUserFragment"
         tools:layout="@layout/user_detail_fragment">
 

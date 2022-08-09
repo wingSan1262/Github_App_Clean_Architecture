@@ -1,2 +1,2 @@
-rootProject.name = "ProdiaAppSample"
+rootProject.name = "AjaibAppSample"
 include ':app'
