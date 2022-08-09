@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_report_navigation"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="vanrrtech.app.prodiaappsample.features.github.SearchFragment"
+        android:label="searchFragment"
+        tools:layout="@layout/search_user_github_fragment">
+        <action
+            android:id="@+id/searchFragment_to_DetailUser"
+            app:destination="@id/detailUserFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailUserFragment"
+        android:name="vanrrtech.app.prodiaappsample.features.github.UserDetailFragment"
+        android:label="detailUserFragment"
+        tools:layout="@layout/user_detail_fragment">
+
+        <action
+            android:id="@+id/detailUserFragment_to_SearchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+    </fragment>
+
+
+</navigation>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_report_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginFragment"
+        android:label="loginFragment"
+        tools:layout="@layout/login_activity">
+        <action
+            android:id="@+id/loginFragment_toWeatherList"
+            app:destination="@id/weatherFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view.WeatherListFragment"
+        android:label="loginFragment"
+        tools:layout="@layout/activity_weather_list">
+        <action
+            android:id="@+id/weatherList_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+
+</navigation>
