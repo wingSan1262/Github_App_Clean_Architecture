@@ -24,6 +24,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.onStart
+import vanrrtech.app.ajaib_app_sample.R
 import vanrrtech.app.ajaib_app_sample.base_components.entities.Event
 
 
@@ -57,7 +58,7 @@ fun View.setVisibilityInvisible(boolean: Boolean){
 fun ImageView.loadImage(imageLink : String){
         Glide.with(this.context)
             .load(imageLink)
-            .error(vanrrtech.app.ajaib_app_sample.R.drawable.no_connection_error)
+            .error(R.drawable.no_connection_error)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,

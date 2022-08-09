@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.FragmentModule
+import vanrrtech.app.ajaib_app_sample.di.Fragments.FragmentModule
 import vanrrtech.app.ajaib_app_sample.features.github.SearchFragmentVm
 import vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragmentVm
 import vanrrtech.app.ajaib_app_sample.features.github.home.TopActivity

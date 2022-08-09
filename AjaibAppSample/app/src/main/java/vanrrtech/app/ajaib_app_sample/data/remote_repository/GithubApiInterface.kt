@@ -10,13 +10,13 @@ import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.UserRepo
 
 interface GithubApiInterface {
     @GET("users")
-    suspend fun getUsersList(): List<GithubUserItemResponse>
+    suspend fun getUsersList(): List<GithubUserItemResponse>?
 
     @GET("search/users")
     suspend fun searchUser(@Query("q") searchKey : String, @Query("type") type : String): SearchResult?
 
     @GET("users/{USERNAME}/repos")
-    suspend fun getUserRepos(@Path("USERNAME") userName : String) : List<UserRepoDetails>
+    suspend fun getUserRepos(@Path("USERNAME") userName : String) : List<UserRepoDetails>?
 
     @GET("users/{USERNAME}")
     suspend fun getUserDetails(@Path("USERNAME") userName : String) : UserDetails?

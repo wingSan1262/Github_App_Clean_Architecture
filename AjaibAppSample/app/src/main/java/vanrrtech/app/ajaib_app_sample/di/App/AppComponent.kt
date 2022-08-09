@@ -1,9 +1,8 @@
-package vanrrtech.app.kompasgithubapp.app.DependancyInjenction
+package vanrrtech.app.ajaib_app_sample.di.App
 
 import dagger.Component
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.ActivityComponent
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.ActivityModule
-import vanrrtech.app.ajaib_app_sample.di.App.UseCasesModules
+import vanrrtech.app.ajaib_app_sample.di.Activity.ActivityComponent
+import vanrrtech.app.ajaib_app_sample.di.Activity.ActivityModule
 
 @AppScope
 @Component(modules = [

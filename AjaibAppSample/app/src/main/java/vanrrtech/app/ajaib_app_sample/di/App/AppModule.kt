@@ -1,4 +1,4 @@
-package vanrrtech.app.kompasgithubapp.app.DependancyInjenction
+package vanrrtech.app.ajaib_app_sample.di.App
 
 import android.app.Application
 import dagger.Module

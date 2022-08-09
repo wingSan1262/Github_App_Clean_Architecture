@@ -25,7 +25,7 @@ class RemoteApiRetrofitClient(
             .create(GithubApiInterface::class.java)
     }
 
-    suspend fun getUserList(): List<GithubUserItemResponse> {
+    suspend fun getUserList(): List<GithubUserItemResponse>? {
         return getGithubRetrofit().getUsersList()
     }
 
@@ -37,7 +37,7 @@ class RemoteApiRetrofitClient(
         return getGithubRetrofit().getUserDetails(request.userName)
     }
 
-    suspend fun getUserRepo(request: UserDetailRequest): List<UserRepoDetails> {
+    suspend fun getUserRepo(request: UserDetailRequest): List<UserRepoDetails>? {
         return getGithubRetrofit().getUserRepos(request.userName)
     }
 

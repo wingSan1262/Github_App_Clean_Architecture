@@ -2,7 +2,6 @@ package vanrrtech.app.ajaib_app_sample.di.App
 
 import dagger.Module
 import dagger.Provides
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.AppScope
 import vanrrtech.app.ajaib_app_sample.data.SQDb.github.UserListDao
 import vanrrtech.app.ajaib_app_sample.data.remote_repository.RemoteApiRetrofitClient
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.github.*

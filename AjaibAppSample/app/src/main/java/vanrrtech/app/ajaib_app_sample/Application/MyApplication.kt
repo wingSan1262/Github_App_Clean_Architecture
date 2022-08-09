@@ -3,9 +3,9 @@ package vanrrtech.app.ajaib_app_sample.Application
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.AppComponent
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.AppModule
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.DaggerAppComponent
+import vanrrtech.app.ajaib_app_sample.di.App.AppComponent
+import vanrrtech.app.ajaib_app_sample.di.App.AppModule
+import vanrrtech.app.ajaib_app_sample.di.App.DaggerAppComponent
 
 class MyApplication : Application() {
     val myAppComponent : AppComponent by lazy {

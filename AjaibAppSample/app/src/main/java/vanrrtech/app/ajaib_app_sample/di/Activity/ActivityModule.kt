@@ -1,4 +1,4 @@
-package vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity
+package vanrrtech.app.ajaib_app_sample.di.Activity
 
 import android.app.Application
 import android.content.Context

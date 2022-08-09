@@ -24,8 +24,8 @@ class UserListAdapter(
                 parent,
                 false
             ),
-            itemClick,
-            randomHandler
+            itemClick = itemClick,
+            randomHandler = randomHandler
         )
     }
 

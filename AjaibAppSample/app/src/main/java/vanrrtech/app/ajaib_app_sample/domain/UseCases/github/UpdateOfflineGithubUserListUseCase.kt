@@ -13,11 +13,15 @@ class UpdateOfflineGithubUserListUseCase(
         launch(coroutineContext) {
             execute {
                 try {
+                    val param = parameter
                     myApi.nukeTable()
-                    parameter.forEach {
+                    param.forEach {
                         myApi.insertUsers(it)
                     }
-                } catch (e : Throwable){return@execute false}
+                } catch (e : Throwable){
+                    val e = e
+                    return@execute false
+                }
                 return@execute true
             }}
     }

@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.ActivityComponent
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.ActivityModule
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.AppComponent
+import vanrrtech.app.ajaib_app_sample.di.Activity.ActivityComponent
+import vanrrtech.app.ajaib_app_sample.di.Activity.ActivityModule
+import vanrrtech.app.ajaib_app_sample.di.App.AppComponent
 import vanrrtech.app.ajaib_app_sample.Application.MyApplication
 import vanrrtech.app.ajaib_app_sample.di.Activity.ViewBinderFactory.ViewBinderFactory
 import vanrrtech.app.ajaib_app_sample.base_components.UtilServices.KeyboardDismisser

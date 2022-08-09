@@ -1,6 +1,8 @@
-package vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity
+package vanrrtech.app.ajaib_app_sample.di.Fragments
 
 import dagger.Subcomponent
+import vanrrtech.app.ajaib_app_sample.di.Fragments.FragmentModule
+import vanrrtech.app.ajaib_app_sample.di.Fragments.FragmentScope
 import vanrrtech.app.ajaib_app_sample.features.github.SearchFragment
 import vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragment
 import vanrrtech.app.ajaib_app_sample.features.github.home.TopFragment
