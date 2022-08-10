@@ -92,6 +92,10 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding>() {
     }
 
     fun updateList(items: List<GithubUserItemResponse>, isSearch: Boolean = false){
+        if(items.isEmpty()){
+            snackBarHandler.showSnackBar("no user found here sorry . . .")
+            return
+        }
         userListAdapter?.clearList()
         lifecycleScope.launch {
             withBinding {
@@ -125,7 +129,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding>() {
         observeEvent(searchViewModel.offlineGithubUserLiveData){
             when (it) {
                 is ResourceState.Success -> {
-                    if(it.body.isNotEmpty()) updateList(it.body)
+                    updateList(it.body)
                     withBinding { cvLoading.setVisibility(false) }
                 }
                 is ResourceState.Failure -> {
@@ -151,6 +155,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding>() {
                 is ResourceState.Success -> {
                     if(it.body.items.isNotEmpty())
                         updateList(it.body.items as List<GithubUserItemResponse>, isSearch = true) else {
+                        snackBarHandler.showSnackBar("no user found here sorry . . .")
                         searchViewModel.fetchUserList()
                     }
                 }

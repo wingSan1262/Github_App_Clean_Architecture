@@ -81,6 +81,10 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding>() {
     }
 
     fun updateList(items: List<UserRepoDetails>){
+        if(items.isEmpty()){
+            snackBarHandler.showSnackBar("no repo found here sorry . . .")
+            return
+        }
         repoAdapter?.clearList()
         lifecycleScope.launch {
                 items.forEach {
