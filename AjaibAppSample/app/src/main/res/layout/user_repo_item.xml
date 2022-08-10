@@ -40,14 +40,15 @@
                     android:textSize="16sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
+
                 <TextView
                     android:id="@+id/repo_desc"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non tortor sit amet magna luctus gravida. Morbi lorem lorem, egestas eget pharetra at,  "
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_marginLeft="4dp"
