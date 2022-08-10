@@ -12,24 +12,24 @@ data class GithubUserItemResponse(
     @PrimaryKey
     @SerializedName("id")
     @ColumnInfo(name = "id")
-    var id : Int,
+    var id : Int = -1,
 
     @SerializedName("login")
     @ColumnInfo(name = "login")
-    var login : String,
+    var login : String = "",
 
 
     @SerializedName("avatar_url")
     @ColumnInfo(name = "avatar_url")
-    var avatarUrl : String,
+    var avatarUrl : String = "",
 
     @SerializedName("url")
     @ColumnInfo(name = "url")
-    var url : String,
+    var url : String = "",
 
     @SerializedName("repos_url")
     @ColumnInfo(name = "repos_url")
-    var repos_url : String,
+    var repos_url : String = "",
 ) : Serializable, BaseModel
 
 data class SearchResult(
@@ -66,7 +66,7 @@ data class UserRepoDetails(
     var owner : GithubUserItemResponse,
     @SerializedName("description")
     var description : String,
-    @SerializedName("watcher_count")
+    @SerializedName("watchers_count")
     var watcher_count : Int,
     @SerializedName("updated_at")
     var update_at : String

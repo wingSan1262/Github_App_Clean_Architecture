@@ -4,11 +4,8 @@ package vanrrtech.app.ajaib_app_sample.features.github
 
 import android.view.View
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
-import io.mockk.coVerify
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.slot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.*
@@ -49,8 +46,6 @@ internal class UserDetailFragmentVmTest{
 
     val dispatcher = TestCoroutineDispatcher()
 
-    @Before
-    @Throws(Exception::class)
     fun setup() {
         MockKAnnotations.init(this)
         Dispatchers.setMain(dispatcher)
@@ -64,6 +59,7 @@ internal class UserDetailFragmentVmTest{
 
     @Test
     fun callApi_fetchUserData(){
+        setup()
         val req = UserDetailRequest("")
         val res = UserDetails("","","","","","","","")
         var isNotified = false
@@ -88,6 +84,7 @@ internal class UserDetailFragmentVmTest{
     }
     @Test
     fun callApi_fetchUserData_invokedCorrectly(){
+        setup()
         val req = UserDetailRequest("")
         var slot = slot<UserDetailRequest>()
         val res = UserDetails("","","","","","","","")
@@ -112,6 +109,7 @@ internal class UserDetailFragmentVmTest{
     }
     @Test
     fun callApi_fetchUserData_fail(){
+        setup()
         val req = UserDetailRequest("")
         val res = UserDetails("","","","","","","","")
         var isNotified = false
@@ -136,40 +134,8 @@ internal class UserDetailFragmentVmTest{
     }
 
     @Test
-    fun callApi_fetchRepoList(){
-        val req = UserDetailRequest("")
-        val res = listOf(
-            UserRepoDetails("",
-                GithubUserItemResponse(1,"","","",""),
-                "",1,""),
-            UserRepoDetails("",
-                GithubUserItemResponse(1,"","","",""),
-                "",1,""),
-        )
-        var isNotified = false
-        var result  : ResourceState<List<UserRepoDetails>>? = null
-        SUT.userRepoLiveData.observeForever{
-            it.contentIfNotHandled?.let {
-                isNotified = true; result = it
-            }
-        }
-
-        runTest {
-            coEvery { mRepo.getUserRepo(req)}.returns(res)
-            SUT?.fetchRepoList(req)
-            while (!isNotified){
-                delay(250)
-            }
-            advanceUntilIdle()
-        }
-        if((result is ResourceState.Success)){
-            assertThat((result as ResourceState.Success<List<UserRepoDetails>>).body
-                , `is`(res))
-        }
-
-    }
-    @Test
-    fun callApi_fetchRepoList_invokedCorrectly(){
+    fun callApi_fetchRepoList_invokedCorrectlyAndSuccess(){
+        setup()
 
         val slot = slot<UserDetailRequest>()
         val req = UserDetailRequest("")
@@ -203,10 +169,10 @@ internal class UserDetailFragmentVmTest{
             }
             advanceUntilIdle()
         }
-
     }
     @Test
     fun callApi_fetchRepoList_fail(){
+        setup()
         val req = UserDetailRequest("")
         val res = listOf(
             UserRepoDetails("",
@@ -237,7 +203,20 @@ internal class UserDetailFragmentVmTest{
         }
     }
 
+    @Test
+    fun onDestroy(){
+        setup()
+        SUT.onDestroy()
+        assertThat(getGithubUserDetails?.isCancelled(), `is`(true))
+        assertThat(getGithubUserRepoContent?.isCancelled(), `is`(true))
+    }
 
+    @Test
+    fun init(){
+        setup()
+        assertThat(getGithubUserDetails?.isCancelled(), `is`(false))
+        assertThat(getGithubUserRepoContent?.isCancelled(), `is`(false))
+    }
 
     @Test
     fun tryThis(){}
