@@ -106,7 +106,7 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding>() {
             followerTv.text = "${data.followers} Followers"
             followingTv.text = "${data.following} Following"
             locationTvTv.text = data.location ?: "Not Available"
-            emailTv.text = data.email ?: "Not Available"
+            emailTvDetail.text = data.email ?: "Not Available"
         }
     }
 

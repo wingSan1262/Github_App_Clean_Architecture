@@ -32,8 +32,8 @@
         <TextView
             android:gravity="left|center"
             android:id="@+id/name_tv"
-            android:layout_marginHorizontal="15dp"
-            android:layout_width="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Wangh Shii"
             android:textStyle="bold"
