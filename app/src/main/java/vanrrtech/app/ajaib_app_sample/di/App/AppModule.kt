@@ -10,8 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import vanrrtech.app.ajaib_app_sample.di.Activity.ViewBinderFactory.ViewBinderFactory
 import vanrrtech.app.ajaib_app_sample.di.Activity.ViewModelProducer.VmFactory
 import vanrrtech.app.ajaib_app_sample.data.remote_repository.RemoteApiRetrofitClient
-import vanrrtech.app.ajaib_app_sample.data.SQDb.github.GithubUserDb
+import vanrrtech.app.ajaib_app_sample.data.SQDb.AppDb
 import vanrrtech.app.ajaib_app_sample.data.SQDb.github.UserListDao
+import vanrrtech.app.ajaib_app_sample.data.SQDb.imdb.MovieListDao
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.github.*
 
 @Module
@@ -51,14 +52,20 @@ class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    fun getUserListDataDB(application: Application): GithubUserDb {
-        return GithubUserDb.getInstance(application.applicationContext)
+    fun getUserListDataDB(application: Application): AppDb {
+        return AppDb.getInstance(application.applicationContext)
     }
 
     @Provides
     @AppScope
-    fun getUserListDataDBDao(db : GithubUserDb): UserListDao {
+    fun getUserListDataDBDao(db : AppDb): UserListDao {
         return db.userItemDao()
+    }
+
+    @Provides
+    @AppScope
+    fun getMovieListDao(db : AppDb): MovieListDao {
+        return db.movieDao()
     }
 
     @Provides

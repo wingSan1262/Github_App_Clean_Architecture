@@ -1,22 +1,25 @@
-package vanrrtech.app.ajaib_app_sample.data.SQDb.github
+package vanrrtech.app.ajaib_app_sample.data.SQDb
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import vanrrtech.app.ajaib_app_sample.data.SQDb.github.UserListDao
+import vanrrtech.app.ajaib_app_sample.data.SQDb.imdb.MovieListDao
 import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
+import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 
-@Database(entities = [GithubUserItemResponse::class], exportSchema = false, version = 1)
-public abstract class GithubUserDb() : RoomDatabase() {
+@Database(entities = [GithubUserItemResponse::class, MovieItem::class], exportSchema = false, version = 1)
+public abstract class AppDb() : RoomDatabase() {
     companion object {
         val DB_NAME: String = "user_list_db"
-        private var instance: GithubUserDb? = null
+        private var instance: AppDb? = null
 
-        fun getInstance(context: Context): GithubUserDb {
+        fun getInstance(context: Context): AppDb {
             if (instance == null) {
                 instance = Room.databaseBuilder(
                     context.applicationContext,
-                    GithubUserDb::class.java,
+                    AppDb::class.java,
                     DB_NAME
                 )
                     .fallbackToDestructiveMigration()
@@ -27,4 +30,5 @@ public abstract class GithubUserDb() : RoomDatabase() {
     }
 
     public abstract fun userItemDao(): UserListDao
+    public abstract fun movieDao(): MovieListDao
 }

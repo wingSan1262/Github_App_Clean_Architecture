@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import vanrrtech.app.ajaib_app_sample.databinding.*
+import vanrrtech.app.ajaib_app_sample.features.Imdb.MovieDetailFragment
+import vanrrtech.app.ajaib_app_sample.features.Imdb.MovieListFragment
 import vanrrtech.app.ajaib_app_sample.features.github.home.TopActivity
 import vanrrtech.app.ajaib_app_sample.features.github.SearchFragment
 import vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragment
@@ -30,6 +32,19 @@ class ViewBinderFactory() {
             }
             UserDetailFragment::class.java -> {
                 (fragment as UserDetailFragment).viewBinding = UserDetailFragmentBinding.inflate(inflater,
+                    container,
+                    false
+                )
+            }
+            MovieListFragment::class.java -> {
+                (fragment as MovieListFragment).viewBinding = MovieListFragmentBinding.inflate(inflater,
+                    container,
+                    false
+                )
+            }
+
+            MovieDetailFragment::class.java -> {
+                (fragment as MovieDetailFragment).viewBinding = DetailMovieFragmentBinding.inflate(inflater,
                     container,
                     false
                 )

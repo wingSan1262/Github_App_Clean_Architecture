@@ -6,6 +6,9 @@
         <entry key="app/src/main/res/drawable/bg_user_list.xml" value="0.335" />
         <entry key="app/src/main/res/drawable/bg_user_list_rounded.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_path_12295.xml" value="0.13" />
+        <entry key="app/src/main/res/layout/detail_movie_fragment.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/movie_item_holder.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/movie_list_fragment.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/layout/search_user_github_fragment.xml" value="0.22264556884765627" />
         <entry key="app/src/main/res/layout/search_user_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/top_activity_layout.xml" value="0.15625" />

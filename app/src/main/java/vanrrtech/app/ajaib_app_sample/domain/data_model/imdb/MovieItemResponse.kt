@@ -16,6 +16,7 @@ data class MovieItemResponse(
 data class MovieItem(
     @SerializedName("id")
     @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = false)
     var id : String,
     @SerializedName("rank")
     @ColumnInfo(name = "rank")
@@ -41,4 +42,4 @@ data class MovieItem(
     @SerializedName("imDbRatingCount")
     @ColumnInfo(name = "imDbRatingCount")
     var imDbRatingCount : String,
-)
+) : Serializable, BaseModel

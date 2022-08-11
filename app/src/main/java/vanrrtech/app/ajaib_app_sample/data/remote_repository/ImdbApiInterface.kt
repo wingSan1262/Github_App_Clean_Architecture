@@ -10,7 +10,7 @@ import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.UserRepo
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItemResponse
 
 interface ImdbApiInterface {
-    @GET("en/API/Top250Movies/k_ae9hkfd4")
+    @GET("en/API/Top250Movies/k_wk87s6ey")
     suspend fun getAllMovieList(): MovieItemResponse
 
 }

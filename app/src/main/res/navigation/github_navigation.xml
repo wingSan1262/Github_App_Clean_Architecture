@@ -3,39 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/weather_report_navigation"
-    app:startDestination="@id/searchFragment">
+    app:startDestination="@id/movieList">
 
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="vanrrtech.app.ajaib_app_sample.features.github.SearchFragment"
-        android:label="searchFragment"
-        tools:layout="@layout/search_user_github_fragment">
-        <action
-            android:id="@+id/searchFragment_to_DetailUser"
-            app:destination="@id/detailUserFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+        android:id="@+id/movieList"
+        android:name="vanrrtech.app.ajaib_app_sample.features.Imdb.MovieListFragment"
+        android:label="movieList"
+        tools:layout="@layout/movie_list_fragment">
+            <action
+                android:id="@+id/movieList_to_movieDetail"
+                app:destination="@id/movieDetail"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_right"
+                app:popEnterAnim="@anim/slide_in_right"
+                app:popExitAnim="@anim/slide_out_right"
+                />
     </fragment>
 
     <fragment
-        android:id="@+id/detailUserFragment"
-        android:name="vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragment"
-        android:label="detailUserFragment"
-        tools:layout="@layout/user_detail_fragment">
-
-        <action
-            android:id="@+id/detailUserFragment_to_SearchFragment"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"
-            />
-
+        android:id="@+id/movieDetail"
+        android:name="vanrrtech.app.ajaib_app_sample.features.Imdb.MovieDetailFragment"
+        android:label="movieDetail"
+        tools:layout="@layout/detail_movie_fragment">
     </fragment>
+
 
 
 </navigation>

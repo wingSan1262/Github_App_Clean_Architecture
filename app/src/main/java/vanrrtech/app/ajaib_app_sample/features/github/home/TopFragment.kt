@@ -30,7 +30,7 @@ class TopFragment : BaseFragment<TopFragmentLayoutBinding>() {
     fun onBackPressed(){
         val navHost = childFragmentManager.fragments[0]
 
-        if(navHost?.findNullableNavController()?.currentDestination?.id == R.id.searchFragment){
+        if(navHost?.findNullableNavController()?.currentDestination?.id == R.id.movieList){
             hostActivity.finish(); return
         }
         navHost?.findNullableNavController()?.navigateUp()

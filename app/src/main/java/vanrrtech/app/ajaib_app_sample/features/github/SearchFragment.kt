@@ -63,7 +63,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding>() {
                 userListAdapter = UserListAdapter(loginHandler) {
                     it as GithubUserItemResponse
                     findNullableNavController()?.navigateSafe(
-                        R.id.searchFragment_to_DetailUser,
+                        R.id.movieList_to_movieDetail,
                         bundleOf(
                             PARAMETERS.USER_CLICKED_MODEL to it
                         )

@@ -31,6 +31,13 @@ abstract class BaseAdapter<T : BaseViewHolder<BaseModel>> : RecyclerView.Adapter
         notifyItemInserted(0)
     }
 
+    fun insertAllAtBottom(item: List<BaseModel>){
+        listItems.size.run{
+            listItems.addAll(this, item)
+            notifyItemInserted(this)
+        }
+    }
+
     override fun onBindViewHolder(holder: T, position: Int) {
         bindVH(holder, position)
     }
