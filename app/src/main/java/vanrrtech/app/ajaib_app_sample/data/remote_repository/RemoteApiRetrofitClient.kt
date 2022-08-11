@@ -15,12 +15,21 @@ class RemoteApiRetrofitClient(
     companion object{
         val BASE_URL_WEATHER = "https://api.openweathermap.org/"
         val BASE_URL_GITHUB = "https://api.github.com/"
+        val BASE_IMDB = "https://imdb-api.com/"
     }
 
     fun getGithubRetrofit(): GithubApiInterface {
         return retrofit
             .newBuilder()
             .baseUrl(BASE_URL_GITHUB)
+            .build()
+            .create(GithubApiInterface::class.java)
+    }
+
+    fun getImdbRetrofit(): GithubApiInterface {
+        return retrofit
+            .newBuilder()
+            .baseUrl(BASE_IMDB)
             .build()
             .create(GithubApiInterface::class.java)
     }
