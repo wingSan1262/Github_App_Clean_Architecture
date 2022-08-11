@@ -77,14 +77,13 @@ class ApiPayloadCheckImdb {
             SUT.getAllMovieList().items.run {
                 assertThat(get(0).id, `is`("tt0111161"))
                 assertThat(get(0).rank, `is`("1"))
-                assertThat(get(0).title, `is`("The Shawshank Redemption"))
-                assertThat(get(0).fullTitle, `is`("The Shawshank Redemption (1994)"))
+                assertThat(get(0).title, `is`("TheShawshankRedemption"))
+                assertThat(get(0).fullTitle, `is`("TheShawshankRedemption(1994)"))
                 assertThat(get(0).year, `is`("1994"))
                 assertThat(get(0).image, `is`("https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX128_CR0,12,128,176_AL_.jpg"))
-                assertThat(get(0).crew, `is`("Frank Darabont (dir.), Tim Robbins, Morgan Freeman"))
+                assertThat(get(0).crew, `is`("FrankDarabont(dir.),TimRobbins,MorganFreeman"))
                 assertThat(get(0).imDbRating, `is`("9.2"))
                 assertThat(get(0).imDbRatingCount, `is`("2623078"))
-
             }
             advanceUntilIdle()
         }

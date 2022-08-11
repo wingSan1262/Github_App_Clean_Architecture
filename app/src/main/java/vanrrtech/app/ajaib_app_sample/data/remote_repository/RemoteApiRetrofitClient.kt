@@ -7,6 +7,7 @@ import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUs
 import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.SearchResult
 import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.UserDetails
 import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.UserRepoDetails
+import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItemResponse
 
 class RemoteApiRetrofitClient(
     val retrofit : Retrofit
@@ -26,14 +27,17 @@ class RemoteApiRetrofitClient(
             .create(GithubApiInterface::class.java)
     }
 
-    fun getImdbRetrofit(): GithubApiInterface {
+    fun getImdbRetrofit(): ImdbApiInterface {
         return retrofit
             .newBuilder()
             .baseUrl(BASE_IMDB)
             .build()
-            .create(GithubApiInterface::class.java)
+            .create(ImdbApiInterface::class.java)
     }
 
+    suspend fun getMovieList() : MovieItemResponse? {
+        return getImdbRetrofit().getAllMovieList()
+    }
     suspend fun getUserList(): List<GithubUserItemResponse>? {
         return getGithubRetrofit().getUsersList()
     }
