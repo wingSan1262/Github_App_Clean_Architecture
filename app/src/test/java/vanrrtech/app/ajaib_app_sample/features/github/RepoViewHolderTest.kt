@@ -16,6 +16,7 @@ import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.UserRepo
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.CoreMatchers.`is`
+import vanrrtech.app.ajaib_app_sample.base_components.UtilServices.UnixDateConverter
 
 
 @RunWith(MockitoJUnitRunner::class)
@@ -41,7 +42,7 @@ internal class RepoViewHolderTest{
     @Before
     @Throws(Exception::class)
     fun setup() {
-        SUT = RepoViewHolder(binding, root)
+        SUT = RepoViewHolder(binding, UnixDateConverter(), root)
     }
 
     @Test

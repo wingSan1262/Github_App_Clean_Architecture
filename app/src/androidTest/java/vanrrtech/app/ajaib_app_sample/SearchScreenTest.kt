@@ -80,7 +80,7 @@ class SearchScreenTest {
             onView(withId(R.id.user_desc_tv)).check(
                 matches(not(isDisplayed())))
             onView(withId(R.id.follower_tv)).check(
-                matches(withText("10001 Followers")))
+                matches(withText("10000 Followers")))
             onView(withId(R.id.location_tv_tv)).check(
                 matches(withText("Portland, OR")))
             onView(withId(R.id.following_tv)).check(
