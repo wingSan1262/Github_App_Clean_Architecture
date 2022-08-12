@@ -20,7 +20,6 @@ class MovieListPresenter(
             currentPage += 1
             if(((currentPage+1) * 5)-1 >= 250){
                 currentPage -= 1
-                viewCallback?.showLoading?.invoke(false); return
             }
             isQuerying = true
             model.fetchOfflineMovieList()
@@ -29,37 +28,36 @@ class MovieListPresenter(
 
     fun onScreenStart(){
         currentPage = 0
-        viewCallback?.showLoading?.invoke(true)
+        viewCallback?.showLoading?.invoke()
         model.setListener(
             cbMovie = {
-                viewCallback?.showLoading?.invoke(false)
-                isQuerying = false
                 it?.let {
                     if(it is ResourceState.Success){
                         if(it.body.isEmpty()){
                             viewCallback?.showError?.invoke("no movie"); return@setListener
                         }
-                        if(currentPage == 0) {model.updateMovieOfflineLiveData(it.body)}
+                        if(currentPage == 0) {
+                            if(isOnline) {model.updateMovieOfflineLiveData(it.body)}
+                        }
                         viewCallback?.showListVideo?.invoke(
                             // TODO pagination limitaion . . ., api do not provide pagination
                             it.body.subList(
                                 currentPage * 5,
-                                ((currentPage+1) * 5)-1,
+                                ((currentPage+1) * 5),
                             )
                         )
                         return@setListener
                     }
                     /** error **/
                     if(it is ResourceState.Failure){
+                        isOnline = false
                         model.fetchOfflineMovieList()
-                        isOnline = true
                         viewCallback?.showError?.invoke(it.exception.message.toString())
                         return@setListener
                     }
                     viewCallback?.showError?.invoke("Please check your internet") } ?: kotlin.run {
                     viewCallback?.showError?.invoke("Please check your internet")
                 }
-                viewCallback?.showLoading?.invoke(false)
              }
             ,
             cbDbStatus = {
@@ -69,10 +67,8 @@ class MovieListPresenter(
                         return@setListener
                     }
                 } ?: kotlin.run { viewCallback?.showError?.invoke("Please check your internet")  }
-                viewCallback?.showLoading?.invoke(false)
             }
         )
-        isQuerying = true
         model.fetchMovieData()
     }
 
@@ -84,7 +80,7 @@ class MovieListPresenter(
 }
 
 data class MovieListViewCallback(
-    val showLoading : (Boolean)->Unit={},
+    val showLoading : ()->Unit={},
     val showError : (String)->Unit={},
     val showListVideo : (List<MovieItem>) -> Unit ={}
 )

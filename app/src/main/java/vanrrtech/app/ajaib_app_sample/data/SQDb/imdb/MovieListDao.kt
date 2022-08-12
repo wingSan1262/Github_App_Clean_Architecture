@@ -1,7 +1,6 @@
 package vanrrtech.app.ajaib_app_sample.data.SQDb.imdb
 
 import androidx.room.*
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 
 @Dao

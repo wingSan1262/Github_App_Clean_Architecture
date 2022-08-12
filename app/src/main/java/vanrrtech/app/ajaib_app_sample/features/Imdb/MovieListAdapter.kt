@@ -7,7 +7,6 @@ import vanrrtech.app.ajaib_app_sample.base_components.base_classes.BaseAdapter
 import vanrrtech.app.ajaib_app_sample.base_components.base_classes.BaseViewHolder
 import vanrrtech.app.ajaib_app_sample.base_components.base_interface.BaseModel
 import vanrrtech.app.ajaib_app_sample.databinding.MovieItemHolderBinding
-import vanrrtech.app.ajaib_app_sample.databinding.SearchUserItemBinding
 
 class MovieListAdapter(
     val itemClick : (BaseModel) -> Unit = {}

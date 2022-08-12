@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProdiaAppSample">
         <activity android:name="vanrrtech.app.ajaib_app_sample.base_components.base_classes.BaseActivity" />
-        <activity android:name="vanrrtech.app.ajaib_app_sample.features.github.home.TopActivity"
+        <activity android:name="vanrrtech.app.ajaib_app_sample.features.home.TopActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

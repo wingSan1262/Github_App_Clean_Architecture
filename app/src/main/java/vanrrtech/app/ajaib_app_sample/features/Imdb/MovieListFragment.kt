@@ -19,8 +19,6 @@ import vanrrtech.app.ajaib_app_sample.base_components.constants.PARAMETERS
 import vanrrtech.app.ajaib_app_sample.base_components.entities.ResourceState
 import vanrrtech.app.ajaib_app_sample.base_components.extensions.*
 import vanrrtech.app.ajaib_app_sample.databinding.MovieListFragmentBinding
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.request.SearchUserRequest
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 import javax.inject.Inject
 
@@ -60,10 +58,10 @@ class MovieListFragment : BaseFragment<MovieListFragmentBinding>() {
     fun initUi(){
         presenter.setListener(
             MovieListViewCallback(
-                showLoading = { showLoading(it) },
+                showLoading = { showLoading() },
                 showError = {
-                    showLoading(false)
                     snackBarHandler.showSnackBar(it)
+                    presenter.isQuerying = false
                 },
                 showListVideo = {
                     updateList(it)
@@ -99,12 +97,12 @@ class MovieListFragment : BaseFragment<MovieListFragmentBinding>() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     (recyclerView.layoutManager as? LinearLayoutManager)?.let {
-                        if (dy > 0) {
+                        if (dy >= 0 && !presenter.isQuerying) {
                             val visibleItemCount = it.childCount
                             val totalItemCount = it.itemCount
                             val pastVisibleItems = it.findFirstVisibleItemPosition()
                             if (visibleItemCount + pastVisibleItems >= totalItemCount) {
-                                showLoading(true)
+                                showLoading()
                                 lifecycleScope.launch {
                                     delay(1000)
                                     presenter.loadMore()
@@ -117,26 +115,36 @@ class MovieListFragment : BaseFragment<MovieListFragmentBinding>() {
         }
     }
 
-    fun showLoading(boolean: Boolean){
-        withBinding { swipeRefresh.isRefreshing = boolean } }
-    fun updateList(items: List<MovieItem>){
-        showLoading(false)
-        if(items.isEmpty()){
-            snackBarHandler.showSnackBar("no movie found here sorry . . .")
-            return
+    fun showLoading(){
+        lifecycleScope.launch{
+            withBinding {
+                swipeRefresh.isRefreshing = true
+             }
+            delay(1000)
+            withBinding {
+                swipeRefresh.isRefreshing = false
+            }
         }
-        if(presenter.currentPage == 0){movieListAdapter?.clearList()}
+    }
+    fun updateList(items: List<MovieItem>){
         lifecycleScope.launch {
+            if(items.isEmpty()){
+                snackBarHandler.showSnackBar("no movie found here sorry . . .")
+                presenter.isQuerying = false
+                return@launch
+            }
+            if(presenter.currentPage == 0){movieListAdapter?.clearList()}
             if(presenter.currentPage <= 0){
                 items.asReversed().forEach {
                     delay(70)
                     movieListAdapter?.insertAtTop(it)
                     withBinding { movieRv.smoothScrollToPosition(0) }
                 }
-                showLoading(false)
             } else {
                 movieListAdapter?.insertAllAtBottom(items)
             }
+            delay(500)
+            presenter.isQuerying = false
         }
     }
 }

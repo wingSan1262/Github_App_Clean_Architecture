@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import vanrrtech.app.ajaib_app_sample.di.Fragments.FragmentModule
-import vanrrtech.app.ajaib_app_sample.features.github.SearchFragmentVm
-import vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragmentVm
-import vanrrtech.app.ajaib_app_sample.features.github.home.TopActivity
+import vanrrtech.app.ajaib_app_sample.features.home.TopActivity
 import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
@@ -25,13 +23,6 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     val snackBarHandler by lazy { hostActivity.snackBarHandler }
     val viewBinderFactory by lazy { hostActivity.viewBinderFactory }
     fun dismissKey(){ hostActivity.dismissKey()}
-
-
-    /** Common View model **/
-    @Inject
-    lateinit var searchViewModel: SearchFragmentVm
-    @Inject
-    lateinit var userDetailViewModel: UserDetailFragmentVm
 
 
     /** View binding common **/

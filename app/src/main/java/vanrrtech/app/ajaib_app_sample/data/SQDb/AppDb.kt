@@ -4,12 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import vanrrtech.app.ajaib_app_sample.data.SQDb.github.UserListDao
 import vanrrtech.app.ajaib_app_sample.data.SQDb.imdb.MovieListDao
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 
-@Database(entities = [GithubUserItemResponse::class, MovieItem::class], exportSchema = false, version = 1)
+@Database(entities = [MovieItem::class], exportSchema = false, version = 1)
 public abstract class AppDb() : RoomDatabase() {
     companion object {
         val DB_NAME: String = "user_list_db"
@@ -29,6 +27,5 @@ public abstract class AppDb() : RoomDatabase() {
         }
     }
 
-    public abstract fun userItemDao(): UserListDao
     public abstract fun movieDao(): MovieListDao
 }

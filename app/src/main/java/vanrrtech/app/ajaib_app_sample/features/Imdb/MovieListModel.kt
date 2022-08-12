@@ -4,19 +4,11 @@ package vanrrtech.app.ajaib_app_sample.features.Imdb
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import org.jetbrains.annotations.Contract
-import vanrrtech.app.ajaib_app_sample.base_components.base_interface.BaseModel
 import vanrrtech.app.ajaib_app_sample.base_components.entities.Event
 import vanrrtech.app.ajaib_app_sample.base_components.entities.ResourceState
-import vanrrtech.app.ajaib_app_sample.domain.UseCases.github.GetGithubUserListUseCase
-import vanrrtech.app.ajaib_app_sample.domain.UseCases.github.GetOfflineGithubUserListUseCase
-import vanrrtech.app.ajaib_app_sample.domain.UseCases.github.SearchUserGithubUseCase
-import vanrrtech.app.ajaib_app_sample.domain.UseCases.github.UpdateOfflineGithubUserListUseCase
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.imdb.GetMovieListUseCase
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.imdb.GetOfflineMovieListUseCase
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.imdb.MovieOfflineUpdateUseCase
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.request.SearchUserRequest
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 
 class MovieListModel(

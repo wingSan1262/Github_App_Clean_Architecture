@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/github_navigation" />
+            app:navGraph="@navigation/app_nav" />
 
 <!--        <fragment-->
 <!--            android:id="@+id/navigation"-->

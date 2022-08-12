@@ -15,13 +15,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import vanrrtech.app.ajaib_app_sample.R
 import vanrrtech.app.ajaib_app_sample.base_components.base_classes.BaseFragment
-import vanrrtech.app.ajaib_app_sample.base_components.constants.PARAMETERS
-import vanrrtech.app.ajaib_app_sample.base_components.entities.ResourceState
 import vanrrtech.app.ajaib_app_sample.base_components.extensions.*
 import vanrrtech.app.ajaib_app_sample.databinding.DetailMovieFragmentBinding
-import vanrrtech.app.ajaib_app_sample.databinding.MovieListFragmentBinding
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.request.SearchUserRequest
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 import javax.inject.Inject
 

@@ -20,14 +20,8 @@ import vanrrtech.app.ajaib_app_sample.data.remote_repository.RemoteApiRetrofitCl
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.imdb.GetMovieListUseCase
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.imdb.GetOfflineMovieListUseCase
 import vanrrtech.app.ajaib_app_sample.domain.UseCases.imdb.MovieOfflineUpdateUseCase
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.request.UserDetailRequest
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.UserDetails
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.UserRepoDetails
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItemResponse
-import vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragmentVm
-import vanrrtech.app.ajaib_app_sample.features.github.UserItemViewHolder
 
 @RunWith(MockitoJUnitRunner::class)
 
@@ -72,7 +66,7 @@ internal class MovieListModelTest {
         var isNotified = false
         var result  : ResourceState<List<MovieItem>>? = null
         SUT.movieLiveData.observeForever{
-            it.contentIfNotHandled?.let {
+            it.getContentForTest()?.let {
                 isNotified = true; result = it
             }
         }
@@ -95,7 +89,7 @@ internal class MovieListModelTest {
         var isNotified = false
         var result  : ResourceState<List<MovieItem>>? = null
         SUT.movieLiveData.observeForever{
-            it.contentIfNotHandled?.let {
+            it.getContentForTest()?.let {
                 isNotified = true; result = it
             }
         }
@@ -123,7 +117,7 @@ internal class MovieListModelTest {
         var isNotified = false
         var result  : ResourceState<List<MovieItem>>? = null
         SUT.offlineMovieLiveData.observeForever{
-            it.contentIfNotHandled?.let {
+            it.getContentForTest()?.let {
                 isNotified = true; result = it
             }
         }
@@ -147,7 +141,7 @@ internal class MovieListModelTest {
         var isNotified = false
         var result  : ResourceState<List<MovieItem>>? = null
         SUT.offlineMovieLiveData.observeForever{
-            it.contentIfNotHandled?.let {
+            it.getContentForTest()?.let {
                 isNotified = true; result = it
             }
         }
@@ -179,7 +173,7 @@ internal class MovieListModelTest {
         var isNotified = false
         var result  : ResourceState<Boolean>? = null
         SUT.updateMovieOfflineLiveData.observeForever{
-            it.contentIfNotHandled?.let {
+            it.getContentForTest()?.let {
                 isNotified = true; result = it
             }
         }
@@ -216,7 +210,7 @@ internal class MovieListModelTest {
         var isNotified = false
         var result  : ResourceState<Boolean>? = null
         SUT.updateMovieOfflineLiveData.observeForever{
-            it.contentIfNotHandled?.let {
+            it.getContentForTest()?.let {
                 isNotified = true; result = it
             }
         }

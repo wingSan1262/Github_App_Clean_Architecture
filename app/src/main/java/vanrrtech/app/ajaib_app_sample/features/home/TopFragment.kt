@@ -1,4 +1,4 @@
-package vanrrtech.app.ajaib_app_sample.features.github.home
+package vanrrtech.app.ajaib_app_sample.features.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,8 +6,6 @@ import vanrrtech.app.ajaib_app_sample.base_components.base_classes.BaseViewHolde
 import vanrrtech.app.ajaib_app_sample.base_components.base_interface.BaseModel
 import vanrrtech.app.ajaib_app_sample.base_components.extensions.loadImage
 import vanrrtech.app.ajaib_app_sample.databinding.MovieItemHolderBinding
-import vanrrtech.app.ajaib_app_sample.databinding.SearchUserItemBinding
-import vanrrtech.app.ajaib_app_sample.domain.data_model.github.response.GithubUserItemResponse
 import vanrrtech.app.ajaib_app_sample.domain.data_model.imdb.MovieItem
 
 class MovieListHolder(

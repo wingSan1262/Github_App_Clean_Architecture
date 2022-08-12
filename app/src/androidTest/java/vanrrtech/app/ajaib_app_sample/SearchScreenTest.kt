@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
@@ -13,6 +14,7 @@ import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -23,161 +25,114 @@ import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Before
+import org.junit.FixMethodOrder
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import vanrrtech.app.ajaib_app_sample.features.github.UserItemViewHolder
-import vanrrtech.app.ajaib_app_sample.features.github.home.TopActivity
+import org.junit.runners.MethodSorters
+import org.mockito.internal.verification.Description
+import vanrrtech.app.ajaib_app_sample.features.Imdb.MovieListHolder
+import vanrrtech.app.ajaib_app_sample.features.home.TopActivity
 
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class SearchScreenTest {
+
     val intent = Intent(ApplicationProvider.getApplicationContext(), TopActivity::class.java).putExtra("title", "Testing rules!")
     @Rule @JvmField val activityScenario = ActivityScenarioRule<TopActivity>(intent)
 
     @Before
     fun setup(){
-        activityScenario.scenario.onActivity {
-
-        }
     }
 
-    @Test fun fragment_shownUiComponent() {
+    @Test fun A_ableToLoadMore(){
         runBlocking {
-            delay(1000)
-            onView(withId(R.id.cv_search)).check(matches(isDisplayed()))
-            onView(withId(R.id.user_rv)).check(matches(isDisplayed()))
-        }
-    }
-    @Test fun fragment_checkTheEditText() {
-        runBlocking {
-            delay(1000)
-            onView(withId(R.id.cv_search)).check(matches(isDisplayed()))
-            onView(withId(R.id.search_field)).perform(typeText("test"))
-            Espresso.closeSoftKeyboard()
-            onView(withId(R.id.search_field)).check(
-                matches(withText("test")))
-        }
-    }
-
-    @Test
-    fun fragment_checkUserDetailsContent() {
-        runBlocking {
-            delay(3000)
-            onView(withId(R.id.user_rv)).perform(
+            delay(5000)
+            onView(withId(R.id.movie_rv)).perform(
                 // scrollTo will fail the test if no item matches.
-                RecyclerViewActions.actionOnItemAtPosition<UserItemViewHolder>(
-                    3,
-                    click()
+                RecyclerViewActions.actionOnItemAtPosition<MovieListHolder>(
+                    4,
+                    scrollTo()
                 )
             )
-            delay(3000)
-            onView(withId(R.id.user_account_id)).check(
-                matches(withText("@wycats")))
-            onView(withId(R.id.user_name)).check(
-                matches(withText("Yehuda Katz")))
-            onView(withId(R.id.user_desc_tv)).check(
-                matches(not(isDisplayed())))
-            onView(withId(R.id.follower_tv)).check(
-                matches(withText("10000 Followers")))
-            onView(withId(R.id.location_tv_tv)).check(
-                matches(withText("Portland, OR")))
-            onView(withId(R.id.following_tv)).check(
-                matches(withText("11 Following")))
-            onView(withId(R.id.emailTvDetail)).check(
-                matches(withText("Not Available")))
-        }
-    }
+            delay(500)
+            onView(withId(R.id.swipe_refresh)).check(matches(isRefreshing()))
 
-    @Test
-    fun fragment_scrollCheckRecyclerView() {
-        runBlocking {
-            delay(3000)
-            onView(withId(R.id.user_rv)).perform(
+            /** check for scroll and render capabilities**/
+            delay(2000)
+            onView(withId(R.id.movie_rv)).perform(
                 // scrollTo will fail the test if no item matches.
-                RecyclerViewActions.actionOnItemAtPosition<UserItemViewHolder>(
-                    28,
+                RecyclerViewActions.actionOnItemAtPosition<MovieListHolder>(
+                    9,
+                    scrollTo()
+                )
+            )
+            /** check for child content**/
+            onView(
+                RecyclerViewMatcher(R.id.movie_rv)
+                    .atPositionOnView(9, R.id.tv_title))
+                .check(matches(isDisplayed()))
+            onView(
+                RecyclerViewMatcher(R.id.movie_rv)
+                    .atPositionOnView(9, R.id.image_poster_list_item))
+                .check(matches(isDisplayed()))
+
+            val textContent1 = getText(RecyclerViewMatcher(R.id.movie_rv)
+                .atPositionOnView(9, R.id.tv_title))
+            if(textContent1?.isEmpty() == true) { throw Throwable("content should not be emoty")}
+
+            /** check for scroll and render capabilities**/
+            delay(2000)
+            onView(withId(R.id.movie_rv)).perform(
+                RecyclerViewActions.actionOnItemAtPosition<MovieListHolder>(
+                    14,
                     scrollTo()
                 )
             )
 
-            delay(3000)
+
+            /** check for child content**/
             onView(
-                RecyclerViewMatcher(R.id.user_rv)
-                .atPositionOnView(28, R.id.name_tv))
-                .check(matches(withText("mojodna")))
+                RecyclerViewMatcher(R.id.movie_rv)
+                    .atPositionOnView(14, R.id.tv_title))
+                .check(matches(isDisplayed()))
+            onView(
+                RecyclerViewMatcher(R.id.movie_rv)
+                    .atPositionOnView(14, R.id.image_poster_list_item))
+                .check(matches(isDisplayed()))
+
+            val textContent2 = getText(RecyclerViewMatcher(R.id.movie_rv)
+                .atPositionOnView(14, R.id.tv_title))
+            if(textContent2?.isEmpty() == true) { throw Throwable("content should not be emoty")}
+
         }
     }
 
-    @Test
-    fun singleItem_searchingFunctionOnRecyclerViewItem() {
+
+    @Test fun B_fragment_shownUiComponent() {
         runBlocking {
-            delay(1000)
-            onView(withId(R.id.cv_search)).check(matches(isDisplayed()))
-            onView(withId(R.id.search_field)).perform(typeText("wingSan1262"))
-            Espresso.closeSoftKeyboard()
-            onView(withId(R.id.search_field)).check(
-                matches(withText("wingSan1262")))
-            delay(3000)
-            val textContent = getText(RecyclerViewMatcher(R.id.user_rv)
-                    .atPositionOnView(0, R.id.name_tv))
-            if (textContent?.contains("wingSan1262", true) != true)
-                throw Throwable("search function fail")
+            delay(300)
+            onView(withId(R.id.movie_rv)).check(matches(isDisplayed()))
+            onView(withId(R.id.swipe_refresh)).check(matches(isRefreshing()))
         }
     }
 
-    @Test
-    fun multipleItemResult_searchingFunctionOnRecyclerViewItem() {
-        runBlocking {
-            delay(1000)
-            onView(withId(R.id.cv_search)).check(matches(isDisplayed()))
-            onView(withId(R.id.search_field)).perform(typeText("tes")) // TODO only work for this query
-            Espresso.closeSoftKeyboard()
-            onView(withId(R.id.search_field)).check(
-                matches(withText("tes")))
-            delay(2000)
-            val iterator = 1
-            for(i in 0..15){
+}
 
-                onView(withId(R.id.user_rv)).perform(
-                    // scrollTo will fail the test if no item matches.
-                    RecyclerViewActions.actionOnItemAtPosition<UserItemViewHolder>(
-                        i,
-                        scrollTo()
-                    )
-                )
+fun isRefreshing(): Matcher<View> {
+    return object : BoundedMatcher<View, SwipeRefreshLayout>(
+        SwipeRefreshLayout::class.java) {
 
-                delay(500)
+        override fun matchesSafely(view: SwipeRefreshLayout): Boolean {
+            return view.isRefreshing
+        }
 
-                val textContent = getText(RecyclerViewMatcher(R.id.user_rv)
-                    .atPositionOnView(i, R.id.name_tv))
-                if (textContent?.contains("tes", true) != true)
-                    throw Throwable("search function fail")
-            }
-
-            for(i in 15 downTo 0){
-
-                onView(withId(R.id.user_rv)).perform(
-                    // scrollTo will fail the test if no item matches.
-                    RecyclerViewActions.actionOnItemAtPosition<UserItemViewHolder>(
-                        i,
-                        scrollTo()
-                    )
-                )
-
-                delay(500)
-
-                val textContent = getText(RecyclerViewMatcher(R.id.user_rv)
-                    .atPositionOnView(i, R.id.name_tv))
-                if (textContent?.contains("tes", true) != true)
-                    throw Throwable("search function fail")
-            }
+        override fun describeTo(description: org.hamcrest.Description?) {
+            description?.appendText("is refreshing")
         }
     }
-
-
-
 }
 
 fun getText(matcher: Matcher<View?>?): String? {

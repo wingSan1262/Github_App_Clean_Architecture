@@ -7,10 +7,8 @@ import androidx.fragment.app.Fragment
 import vanrrtech.app.ajaib_app_sample.databinding.*
 import vanrrtech.app.ajaib_app_sample.features.Imdb.MovieDetailFragment
 import vanrrtech.app.ajaib_app_sample.features.Imdb.MovieListFragment
-import vanrrtech.app.ajaib_app_sample.features.github.home.TopActivity
-import vanrrtech.app.ajaib_app_sample.features.github.SearchFragment
-import vanrrtech.app.ajaib_app_sample.features.github.UserDetailFragment
-import vanrrtech.app.ajaib_app_sample.features.github.home.TopFragment
+import vanrrtech.app.ajaib_app_sample.features.home.TopActivity
+import vanrrtech.app.ajaib_app_sample.features.home.TopFragment
 class ViewBinderFactory() {
 
     fun <S> bindViewFragment(modelClass : Class<S>,
@@ -20,18 +18,6 @@ class ViewBinderFactory() {
         when (modelClass){
             TopFragment::class.java -> {
                 (fragment as TopFragment).viewBinding = TopFragmentLayoutBinding.inflate(inflater,
-                    container,
-                    false
-                )
-            }
-            SearchFragment::class.java -> {
-                (fragment as SearchFragment).viewBinding = SearchUserGithubFragmentBinding.inflate(inflater,
-                    container,
-                    false
-                )
-            }
-            UserDetailFragment::class.java -> {
-                (fragment as UserDetailFragment).viewBinding = UserDetailFragmentBinding.inflate(inflater,
                     container,
                     false
                 )

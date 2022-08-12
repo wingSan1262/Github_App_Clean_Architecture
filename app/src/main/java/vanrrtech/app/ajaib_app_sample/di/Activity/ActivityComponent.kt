@@ -1,7 +1,7 @@
 package vanrrtech.app.ajaib_app_sample.di.Activity
 
 import dagger.Subcomponent
-import vanrrtech.app.ajaib_app_sample.features.github.home.TopActivity
+import vanrrtech.app.ajaib_app_sample.features.home.TopActivity
 import vanrrtech.app.ajaib_app_sample.di.Fragments.FragmentComponent
 import vanrrtech.app.ajaib_app_sample.di.Fragments.FragmentModule
 

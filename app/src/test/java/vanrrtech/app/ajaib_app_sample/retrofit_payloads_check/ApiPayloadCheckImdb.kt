@@ -19,9 +19,6 @@ import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
-import vanrrtech.app.ajaib_app_sample.data.remote_repository.GithubApiInterface
-import vanrrtech.app.ajaib_app_sample.data.remote_repository.RemoteApiRetrofitClient
 import java.util.concurrent.TimeUnit
 
 import org.hamcrest.MatcherAssert.assertThat
